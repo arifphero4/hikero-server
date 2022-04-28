@@ -9,7 +9,9 @@ app.use(cors());
 app.use(express());
 
 app.get("/", (req, res) => {
-  res.send("running warehouse management server ");
+  res.send(
+    "running warehouse management server  and i have to complete this porject within 24 hours"
+  );
 });
 
 app.listen(port, () => {
