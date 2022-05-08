@@ -17,6 +17,17 @@ const client = new MongoClient(uri, {
 
 async function run() {
   try {
+    await client.connect();
+    const database = client.db("travelTourism");
+    const servicesCollection = database.collection("services");
+    const bookingCollection = database.collection("booking");
+
+    //GET API
+    app.get("/services", async (req, res) => {
+      const cursor = servicesCollection.find({});
+      const services = await cursor.toArray();
+      res.send(services);
+    });
   } finally {
     // await client.close();
   }
