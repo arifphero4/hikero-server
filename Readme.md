@@ -1,6 +1,6 @@
 # Hikero Warehouse Website
 
-    hikero is a hiking gears warehouse management website
+hikero is a hiking gears warehouse management website
 
 ## Project Livesite link
 
