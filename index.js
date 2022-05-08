@@ -2,17 +2,13 @@ const express = require("express");
 const cors = require("cors");
 const port = process.env.PORT || 5000;
 const app = express();
-// require("dotenv").config();
+require("dotenv").config();
 
 // middleware
 app.use(cors());
 app.use(express());
 
-app.get("/", (req, res) => {
-  res.send(
-    "running warehouse management server  and i have to complete this porject within 24 hours"
-  );
-});
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.mp2nv.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 
 app.listen(port, () => {
   console.log("listening to port", port);
