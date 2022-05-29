@@ -4,7 +4,7 @@ hikero is a hiking gears warehouse management website
 
 ## Project Livesite link
 
-https://hikero-warehouse-web.web.app/
+https://hikero-warehouse-arifphero4.netlify.app/
 
 ### Elements used for project
 
