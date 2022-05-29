@@ -36,6 +36,34 @@ async function run() {
       res.send(item);
     });
 
+    // quantity decreasing
+    app.put("/inventory/:id", async (req, res) => {
+      const id = req.params.id;
+      const updateQuantity = req.body;
+      const query = { _id: ObjectId(id) };
+      const options = { upsert: true };
+      const updateDatabase = {
+        $set: {
+          quantity: updateQuantity.quantity,
+        },
+      };
+      const result = await itemCollection.updateOne(
+        query,
+        updateDatabase,
+        options
+      );
+      res.send(result);
+    });
+
+    // find myItem api
+    app.get("/myitem", async (req, res) => {
+      const email = req.query?.email;
+      const query = { email: email };
+      const cursor = itemCollection.find(query);
+      const myitems = await cursor.toArray();
+      res.send(myitems);
+    });
+
     //delete product
     app.delete("/inventory/:id", async (req, res) => {
       const id = req.params.id;
