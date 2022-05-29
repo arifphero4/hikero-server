@@ -4,7 +4,7 @@ hikero is a hiking gears warehouse management website
 
 ## Project Livesite link
 
-https://hikero-warehouse-arifphero4.netlify.app/
+https://hikero-warehouse-web.web.app/
 
 ### Elements used for project
 
@@ -13,9 +13,11 @@ https://hikero-warehouse-arifphero4.netlify.app/
   - React.js
   - React Router
   - Firebase
+  - React Hook Form
   - React Bootstrap
 
 - #### For back-end
   - Express.js
   - Node.js
   - MongoDB
+  - JWT
