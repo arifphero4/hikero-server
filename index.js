@@ -7,7 +7,7 @@ require("dotenv").config();
 
 // middleware
 app.use(cors());
-app.use(express());
+app.use(express.json());
 
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.hf6om.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 const client = new MongoClient(uri, {
@@ -29,6 +29,12 @@ async function run() {
       res.send(items);
     });
 
+    app.post("/inventory", async (req, res) => {
+      const newItem = req.body;
+      const insertNewItem = await itemCollection.insertOne(newItem);
+      res.send(insertNewItem);
+    });
+
     app.get("/inventory/:id", async (req, res) => {
       const id = req.params.id;
       const query = { _id: ObjectId(id) };
@@ -40,6 +46,7 @@ async function run() {
     app.put("/inventory/:id", async (req, res) => {
       const id = req.params.id;
       const updateQuantity = req.body;
+      console.log(req.body);
       const query = { _id: ObjectId(id) };
       const options = { upsert: true };
       const updateDatabase = {
@@ -56,13 +63,13 @@ async function run() {
     });
 
     // find myItem api
-    app.get("/myitem", async (req, res) => {
-      const email = req.query?.email;
-      const query = { email: email };
-      const cursor = itemCollection.find(query);
-      const myitems = await cursor.toArray();
-      res.send(myitems);
-    });
+    // app.get("/myitem", async (req, res) => {
+    //   const email = req.query?.email;
+    //   const query = { email: email };
+    //   const cursor = itemCollection.find(query);
+    //   const myitems = await cursor.toArray();
+    //   res.send(myitems);
+    // });
 
     //delete product
     app.delete("/inventory/:id", async (req, res) => {
